@@ -10,8 +10,12 @@
       <span class="clear-button" @click="clearCity">&times;</span>
     </div>
     <ul v-if="suggestions.length">
-      <li v-for="suggestion in suggestions" :key="suggestion" @click="selectSuggestion(suggestion)">
-        {{ suggestion }}
+      <li
+        v-for="suggestion in suggestions"
+        :key="suggestion.country"
+        @click="selectSuggestion(`${suggestion.name},${suggestion.country}`)"
+      >
+        {{ `${suggestion.name},${suggestion.country}` }}
       </li>
     </ul>
     <button @click="getWeather">Get Weather</button>
@@ -22,7 +26,7 @@
       <h2>{{ weather.sys.country }}</h2>
       <p>{{ weather.weather[0].description }}</p>
       <!-- <p>{{ ((weather.main.temp - 32) * 5) / 9 }} °C</p> -->
-      <p>{{ (weather.main.temp - 273.15).toFixed()  }} °C</p>
+      <p>{{ (weather.main.temp - 273.15).toFixed() }} °C</p>
     </div>
   </div>
 </template>
@@ -33,7 +37,7 @@ import { useStore } from 'vuex'
 import axios from 'axios'
 
 const city = ref('')
-const suggestions = ref<string[]>([])
+const suggestions = ref<{ name: string; country: string }[]>([])
 const store = useStore()
 
 const weather = computed(() => store.getters.weather)
@@ -49,7 +53,7 @@ const debounce = (func: Function, delay: number) => {
 }
 
 const fetchSuggestions = debounce(async () => {
-  if (city.value.trim()) {
+  if (city.value.trim().length > 2) {
     try {
       const response = await axios.get(
         `https://api.openweathermap.org/data/2.5/find?q=${city.value}&type=like&appid=${import.meta.env.VITE_OPENWEATHERMAP_API_KEY}`,
@@ -57,9 +61,22 @@ const fetchSuggestions = debounce(async () => {
       // const response = await axios.get(
       //   `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=${import.meta.env.VITE_OPENWEATHERMAP_API_KEY}`,
       // )
-      console.log(response.data)
-      suggestions.value = response.data.list.map((item: any) => item.name)
-      // suggestions.value = response.data.list.map((item: any) => item.sys.country)
+      console.log('the response is:', response.data)
+      // suggestions.value = response.data.list.map((item: any) => `${item.name},${item.sys.country}`)
+
+      // suggestions.value = response.data.list.map((item: any) => {
+      //   return { name: item.name, country: item.sys.country, id: item.id }
+      // })
+
+      const raw = response.data.list.map((item: any) => {
+        return { name: item.name, country: item.sys.country }
+      })
+
+      suggestions.value = raw.filter(
+        (value, index, self) =>
+          index ===
+          self.findIndex((t: any) => t.name === value.name && t.country === value.country),
+      )
     } catch (error: any) {
       console.error('Error fetching suggestions:', error)
     }
@@ -80,6 +97,7 @@ const clearCity = () => {
 }
 
 const selectSuggestion = (suggestion: string) => {
+  console.log(suggestion)
   city.value = suggestion
   suggestions.value = []
   getWeather()
