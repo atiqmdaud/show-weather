@@ -12,7 +12,7 @@
     <ul v-if="suggestions.length">
       <li
         v-for="suggestion in suggestions"
-        :key="`${suggestion.name},${suggestion.country}`"
+        :key="`${suggestion.lat},${suggestion.lon}`"
         @click="
           selectSuggestion(
             suggestion.lat,
@@ -50,6 +50,7 @@
 import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 import axios from 'axios'
+import {countryCodes} from '@/data/CountryCode'
 
 const city = ref('')
 const citylatlon = ref({})
@@ -73,8 +74,9 @@ const debounce = (func: Function, delay: number) => {
 const fetchSuggestions = debounce(async () => {
   if (city.value.trim().length > 2) {
     try {
+      // console.log(city.value)
       const response = await axios.get(
-        `http://api.openweathermap.org/geo/1.0/direct?q=${city.value}&limit=10&appid=${import.meta.env.VITE_OPENWEATHERMAP_API_KEY}`,
+        `http://api.openweathermap.org/geo/1.0/direct?q=${city.value}&limit=5&appid=${import.meta.env.VITE_OPENWEATHERMAP_API_KEY}`,
       )
 
       // const response = await axios.get(
@@ -95,7 +97,7 @@ const fetchSuggestions = debounce(async () => {
         return {
           name: item.name,
           state: item.state,
-          country: item.country,
+          country: countryCodes[item.country] || item.country,
           lat: item.lat,
           lon: item.lon,
         }
@@ -122,7 +124,7 @@ const getWeather = () => {
 
 const clearCity = () => {
   city.value = ''
-  // citylatlon.value = {lat:"",lon:""}
+  citylatlon.value = { lat: '', lon: '' } //or just {} or just commented out
   suggestions.value = []
 }
 
