@@ -26,13 +26,16 @@ export default createStore<State>({
     },
   },
   actions: {
-    async fetchWeather({ commit }, city: string) {
+    async fetchWeather({ commit }, citylatlon: { lat: string; lon: string }) {
       commit('setLoading', true)
       commit('setError', null)
       try {
         const response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${import.meta.env.VITE_OPENWEATHERMAP_API_KEY}`,
+          `https://api.openweathermap.org/data/2.5/weather?lat=${citylatlon.lat}&lon=${citylatlon.lon}&appid=${import.meta.env.VITE_OPENWEATHERMAP_API_KEY}`,
         )
+        // const response = await axios.get(
+        //   `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${import.meta.env.VITE_OPENWEATHERMAP_API_KEY}`,
+        // )
         commit('setWeather', response.data)
       } catch (error: any) {
         commit('setError', error.message)

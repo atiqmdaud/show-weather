@@ -13,7 +13,15 @@
       <li
         v-for="suggestion in suggestions"
         :key="`${suggestion.name},${suggestion.country}`"
-        @click="selectSuggestion(`${suggestion.name},${suggestion.country}`)"
+        @click="
+          selectSuggestion(
+            suggestion.lat,
+            suggestion.lon,
+            suggestion.state
+              ? `${suggestion.name},${suggestion.state},${suggestion.country}`
+              : `${suggestion.name},${suggestion.country}`,
+          )
+        "
       >
         <div v-if="suggestion.state">
           {{
@@ -44,7 +52,10 @@ import { useStore } from 'vuex'
 import axios from 'axios'
 
 const city = ref('')
-const suggestions = ref<{ name: string; state?: string; country: string }[]>([])
+const citylatlon = ref({})
+const suggestions = ref<
+  { name: string; state?: string; country: string; lat: string; lon: string }[]
+>([])
 const store = useStore()
 
 const weather = computed(() => store.getters.weather)
@@ -81,7 +92,13 @@ const fetchSuggestions = debounce(async () => {
       // })
 
       suggestions.value = response.data.map((item: any) => {
-        return { name: item.name, state: item.state, country: item.country }
+        return {
+          name: item.name,
+          state: item.state,
+          country: item.country,
+          lat: item.lat,
+          lon: item.lon,
+        }
       })
 
       // suggestions.value = raw.filter(
@@ -98,19 +115,21 @@ const fetchSuggestions = debounce(async () => {
 }, 300)
 
 const getWeather = () => {
-  if (city.value) {
-    store.dispatch('fetchWeather', city.value)
+  if (citylatlon.value) {
+    store.dispatch('fetchWeather', citylatlon.value)
   }
 }
 
 const clearCity = () => {
   city.value = ''
+  // citylatlon.value = {lat:"",lon:""}
   suggestions.value = []
 }
 
-const selectSuggestion = (suggestion: string) => {
-  console.log(suggestion)
-  city.value = suggestion
+const selectSuggestion = (lat: string, lon: string, infos: string) => {
+  console.log(lat, lon)
+  citylatlon.value = { lat: lat, lon: lon }
+  city.value = infos
   suggestions.value = []
   getWeather()
 }
