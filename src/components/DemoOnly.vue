@@ -12,10 +12,17 @@
     <ul v-if="suggestions.length">
       <li
         v-for="suggestion in suggestions"
-        :key="suggestion.country"
+        :key="`${suggestion.name},${suggestion.country}`"
         @click="selectSuggestion(`${suggestion.name},${suggestion.country}`)"
       >
-        {{ `${suggestion.name},${suggestion.country}` }}
+        <div v-if="suggestion.state">
+          {{
+            `${suggestion.name},${suggestion.state ? suggestion.state : ''},${suggestion.country}`
+          }}
+        </div>
+        <div v-else>
+          {{ `${suggestion.name},${suggestion.country}` }}
+        </div>
       </li>
     </ul>
     <button @click="getWeather">Get Weather</button>
@@ -37,7 +44,7 @@ import { useStore } from 'vuex'
 import axios from 'axios'
 
 const city = ref('')
-const suggestions = ref<{ name: string; country: string }[]>([])
+const suggestions = ref<{ name: string; state?: string; country: string }[]>([])
 const store = useStore()
 
 const weather = computed(() => store.getters.weather)
@@ -56,8 +63,13 @@ const fetchSuggestions = debounce(async () => {
   if (city.value.trim().length > 2) {
     try {
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/find?q=${city.value}&type=like&appid=${import.meta.env.VITE_OPENWEATHERMAP_API_KEY}`,
+        `http://api.openweathermap.org/geo/1.0/direct?q=${city.value}&limit=10&appid=${import.meta.env.VITE_OPENWEATHERMAP_API_KEY}`,
       )
+
+      // const response = await axios.get(
+      //   `https://api.openweathermap.org/data/2.5/find?q=${city.value}&type=like&appid=${import.meta.env.VITE_OPENWEATHERMAP_API_KEY}`,
+      // )
+
       // const response = await axios.get(
       //   `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=${import.meta.env.VITE_OPENWEATHERMAP_API_KEY}`,
       // )
@@ -68,15 +80,15 @@ const fetchSuggestions = debounce(async () => {
       //   return { name: item.name, country: item.sys.country, id: item.id }
       // })
 
-      const raw = response.data.list.map((item: any) => {
-        return { name: item.name, country: item.sys.country }
+      suggestions.value = response.data.map((item: any) => {
+        return { name: item.name, state: item.state, country: item.country }
       })
 
-      suggestions.value = raw.filter(
-        (value, index, self) =>
-          index ===
-          self.findIndex((t: any) => t.name === value.name && t.country === value.country),
-      )
+      // suggestions.value = raw.filter(
+      //   (value, index, self) =>
+      //     index ===
+      //     self.findIndex((t: any) => t.name === value.name && t.country === value.country),
+      // )
     } catch (error: any) {
       console.error('Error fetching suggestions:', error)
     }
