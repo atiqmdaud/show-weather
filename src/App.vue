@@ -1,4 +1,5 @@
 <script setup lang="ts">
+//real development start
 // import { RouterLink, RouterView } from 'vue-router'
 import { RouterView } from 'vue-router'
 </script>
