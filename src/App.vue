@@ -38,6 +38,12 @@ a {
   text-decoration: none;
 }
 
+main{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
 /* header {
   line-height: 1.5;
   max-height: 100vh;
