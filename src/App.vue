@@ -1,31 +1,47 @@
 <script setup lang="ts">
 //real development start
-// import { RouterLink, RouterView } from 'vue-router'
-import { RouterView } from 'vue-router'
+import { RouterLink, RouterView } from 'vue-router'
+// import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <!-- <RouterLink to="/">Home</RouterLink>
-  <RouterLink to="/about">About</RouterLink> -->
-  <!-- <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <header>
+    <h2><RouterLink to="/">Show Weather</RouterLink></h2>
+    <navbar
+      ><li>
+        <RouterLink to="/profile">Profile</RouterLink>
+      </li>
+    </navbar>
+  </header>
 
-    <div>
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header> -->
-
-  <RouterView />
+  <main>
+    <RouterView />
+  </main>
 </template>
 
 <style scoped>
 header {
+  max-height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 13px;
+  padding-right: 13px;
+  padding-top: -1px;
+  /* border: 1px solid red; */
+}
+
+li {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+}
+
+/* header {
   line-height: 1.5;
   max-height: 100vh;
-}
+} */
 
 @media (min-width: 1024px) {
 }

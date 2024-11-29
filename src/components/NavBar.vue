@@ -1,11 +1,6 @@
-<template>
-  <div class="title">Show Weather</div>
-  <RouterLink to="/profile">Profile</RouterLink>
-</template>
+<template><div></div></template>
 
-<script setup lang="ts">
-import { RouterLink } from 'vue-router'
-</script>
+<script setup lang="ts"></script>
 
 <style lang="css" scoped>
 .title {
