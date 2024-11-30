@@ -17,6 +17,9 @@ import { RouterLink, RouterView } from 'vue-router'
   <main>
     <RouterView />
   </main>
+  <div class="footer-container">
+    <footer>&copy; 2024 Your Company. All rights reserved.</footer>
+  </div>
 </template>
 
 <style scoped>
@@ -38,10 +41,25 @@ a {
   text-decoration: none;
 }
 
-main{
+main {
   display: flex;
   flex-direction: column;
   gap: 25px;
+  margin-bottom: 25px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: center;
+}
+
+footer {
+  position: absolute;
+  /* width: 100%; */
+  bottom: 0;
+  /* border: 1px solid red; */
+  /* background-color: rgb(180, 180, 177); */
+  text-align: center;
 }
 
 /* header {

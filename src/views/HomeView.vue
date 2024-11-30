@@ -32,7 +32,7 @@ section {
 }
 
 section#weather-list-card {
-  max-height: 70vh;
+  max-height: 400px;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
