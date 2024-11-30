@@ -1,26 +1,23 @@
 <template>
-  <div>1</div>
-  <div>2</div>
-  <div>3</div>
-  <div>4</div>
-  <div>1</div>
-  <div>2</div>
-  <div>3</div>
-  <div>4</div>
-  <div>1</div>
-  <div>2</div>
-  <div>3</div>
-  <div>4</div>
-  <div>1</div>
-  <div>2</div>
-  <div>3</div>
-  <div>4</div>
+  <div>{{ props.val }}</div>
+  <hr v-if="props.ind < props.leng - 1" />
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const props = defineProps<{ val: number; ind: number; leng: number }>()
+</script>
 
 <style scoped>
 div {
-  background-color: aquamarine;
+  /* background-color: aquamarine; */
+}
+
+hr {
+  border: 0;
+  clear: both;
+  display: block;
+  width: 100%;
+  background-color: #ccc;
+  height: 1px;
 }
 </style>

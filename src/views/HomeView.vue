@@ -11,20 +11,15 @@ import WeatherCityResult from '@/components/WeatherCityResult.vue'
     <UserInput />
   </section>
   <section v-if="true" id="weather-city-result">
-    <WeatherCityResult />
+    <WeatherCityResult
+      v-for="(t, index) in [1, 2, 3, 4, 5]"
+      :key="t"
+      :val="t"
+      :ind="index"
+      :leng="[1, 2, 3, 4, 5].length"
+    />
   </section>
   <section v-else id="weather-list-card">
-    <WeatherAddedCard />
-    <WeatherAddedCard />
-    <WeatherAddedCard />
-    <WeatherAddedCard />
-    <WeatherAddedCard />
-    <WeatherAddedCard />
-    <WeatherAddedCard />
-    <WeatherAddedCard />
-    <WeatherAddedCard />
-    <WeatherAddedCard />
-    <WeatherAddedCard />
     <WeatherAddedCard />
   </section>
 </template>
@@ -44,7 +39,7 @@ section#weather-city-result {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
 }
 section#weather-list-card {
   max-height: 370px;
