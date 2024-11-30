@@ -42,12 +42,6 @@ a {
 }
 
 main {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  margin-bottom: 25px;
-  padding-left: 13px;
-  padding-right: 13px;
 }
 
 .footer-container {
