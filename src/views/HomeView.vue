@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import CurrentWeather from '@/components/CurrentWeather.vue'
+import HourlyForecastCard from '@/components/HourlyForecastCard.vue'
 import UserInput from '@/components/UserInput.vue'
 import WeatherAddedCard from '@/components/WeatherAddedCard.vue'
 import WeatherCityResult from '@/components/WeatherCityResult.vue'
+import WeeklyForecastCard from '@/components/WeeklyForecastCard.vue'
 
 // import store from '@/store'
 </script>
@@ -25,9 +28,21 @@ import WeatherCityResult from '@/components/WeatherCityResult.vue'
     </section>
   </div>
   <div v-else id="detail-sections">
-    <section id="current-weather">current weather</section>
-    <section id="hourly-forecast">Hourly forecast</section>
-    <section id="weekly forecast">weekly forecast</section>
+    <section id="current-weather">
+      <CurrentWeather />
+    </section>
+    <section id="hourly-forecast">
+      <div>Hourly Forecast</div>
+      <div class="hourly-forecast">
+        <HourlyForecastCard v-for="h in ['a', 'b', 'c', 'd', 'e', 'f']" :key="h" />
+      </div>
+    </section>
+    <section id="weekly-forecast">
+      <div>Weekly Forecast</div>
+      <div class="weekly-forecast">
+        <WeeklyForecastCard v-for="w in ['a', 'b', 'c', 'd', 'e', 'f', 'g']" :key="w" />
+      </div>
+    </section>
   </div>
 </template>
 
@@ -63,5 +78,41 @@ section#weather-list-card {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+section#current-weather {
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+  /* gap: 5px; */
+}
+
+section#hourly-forecast {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border: 1px solid red;
+}
+
+.hourly-forecast {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  justify-content: space-between;
+}
+
+section#weekly-forecast {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border: 1px solid red;
+}
+
+.weekly-forecast {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  overflow-y: auto;
+  max-height: 200px;
 }
 </style>

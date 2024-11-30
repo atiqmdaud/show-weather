@@ -53,7 +53,7 @@ footer {
   position: absolute;
   /* width: 100%; */
   bottom: 0;
-  /* border: 1px solid red; */
+  /* border: 1px solid blue; */
   /* background-color: rgb(180, 180, 177); */
   text-align: center;
 }
