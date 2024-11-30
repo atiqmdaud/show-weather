@@ -24,6 +24,7 @@
   background-color: burlywood;
   padding: 5px;
   justify-content: space-between;
+  border-radius: 5px;
 }
 
 .left {

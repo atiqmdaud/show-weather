@@ -32,13 +32,13 @@ import WeeklyForecastCard from '@/components/WeeklyForecastCard.vue'
       <CurrentWeather />
     </section>
     <section id="hourly-forecast">
-      <div>Hourly Forecast</div>
+      <div class="title-hourly">Hourly Forecast</div>
       <div class="hourly-forecast">
         <HourlyForecastCard v-for="h in ['a', 'b', 'c', 'd', 'e', 'f']" :key="h" />
       </div>
     </section>
     <section id="weekly-forecast">
-      <div>Weekly Forecast</div>
+      <div class="title-weekly">Weekly Forecast</div>
       <div class="weekly-forecast">
         <WeeklyForecastCard v-for="w in ['a', 'b', 'c', 'd', 'e', 'f', 'g']" :key="w" />
       </div>
@@ -51,11 +51,15 @@ import WeeklyForecastCard from '@/components/WeeklyForecastCard.vue'
 #detail-sections {
   display: flex;
   flex-direction: column;
-  gap: 25px;
   margin-bottom: 25px;
   padding-left: 13px;
   padding-right: 13px;
 }
+
+#main-sections {
+  gap: 25px;
+}
+
 section {
   /* padding-left: 13px; */
   /* padding-right: 13px; */
@@ -85,13 +89,14 @@ section#current-weather {
   flex-direction: column;
   overflow-x: auto;
   /* gap: 5px; */
+  background-color: aliceblue;
 }
 
 section#hourly-forecast {
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  border: 1px solid red;
+  gap: 10px;
+  /* border: 1px solid red; */
 }
 
 .hourly-forecast {
@@ -104,8 +109,8 @@ section#hourly-forecast {
 section#weekly-forecast {
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  border: 1px solid red;
+  gap: 10px;
+  /* border: 1px solid red; */
 }
 
 .weekly-forecast {
@@ -114,5 +119,11 @@ section#weekly-forecast {
   gap: 15px;
   overflow-y: auto;
   max-height: 200px;
+}
+
+.title-hourly,
+.title-weekly {
+  margin-top: 15px;
+  font-weight: bold;
 }
 </style>

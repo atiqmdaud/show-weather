@@ -16,5 +16,6 @@
   gap: 5px;
   background-color: burlywood;
   padding: 5px;
+  border-radius: 5px;
 }
 </style>

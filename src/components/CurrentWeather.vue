@@ -21,13 +21,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: aliceblue;
+  /* background-color: aliceblue; */
 }
 
 .bottom {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: antiquewhite;
+  /* background-color: antiquewhite; */
 }
 </style>
