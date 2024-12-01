@@ -51,6 +51,7 @@ import { ref, computed } from 'vue'
 import { useStore } from 'vuex'
 import axios from 'axios'
 import {countryCodes} from '@/data/CountryCode'
+import type { Suggestions } from '@/types/types';
 
 const city = ref('')
 const citylatlon = ref({})
@@ -93,7 +94,7 @@ const fetchSuggestions = debounce(async () => {
       //   return { name: item.name, country: item.sys.country, id: item.id }
       // })
 
-      suggestions.value = response.data.map((item: any) => {
+      suggestions.value = response.data.map((item: Suggestions) => {
         return {
           name: item.name,
           state: item.state,

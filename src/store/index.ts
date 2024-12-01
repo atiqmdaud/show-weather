@@ -1,20 +1,26 @@
 import axios from 'axios'
 import { createStore } from 'vuex'
+import type { CitiesGeo } from '@/types/types'
 
 export interface State {
+  citiesGeo: CitiesGeo[]
   weather: any | null
   loading: boolean
   error: string | null
 }
 
 export default createStore<State>({
-  state: { weather: null, loading: false, error: null },
+  state: { citiesGeo: [], weather: null, loading: false, error: null },
   getters: {
+    citiesGeo: (state) => state.citiesGeo,
     weather: (state) => state.weather,
     loading: (state) => state.loading,
     error: (state) => state.error,
   },
   mutations: {
+    setCitiesGeo(state, citiesGeo) {
+      state.citiesGeo = citiesGeo
+    },
     setWeather(state, weather) {
       state.weather = weather
     },
@@ -26,6 +32,9 @@ export default createStore<State>({
     },
   },
   actions: {
+    fetchCitiesGeo({ commit }, citiesGeo: CitiesGeo) {
+      commit('setCitiesGeo', citiesGeo)
+    },
     async fetchWeather({ commit }, citylatlon: { lat: string; lon: string }) {
       commit('setLoading', true)
       commit('setError', null)

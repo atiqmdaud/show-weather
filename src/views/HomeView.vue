@@ -5,22 +5,27 @@ import UserInput from '@/components/UserInput.vue'
 import WeatherAddedCard from '@/components/WeatherAddedCard.vue'
 import WeatherCityResult from '@/components/WeatherCityResult.vue'
 import WeeklyForecastCard from '@/components/WeeklyForecastCard.vue'
+import { computed } from 'vue'
+import { useStore } from 'vuex'
 
 // import store from '@/store'
+
+const store = useStore()
+const citiesGeo = computed(() => store.getters.citiesGeo)
 </script>
 
 <template>
-  <div v-if="false" id="main-sections">
+  <div v-if="true" id="main-sections">
     <section id="user-input">
       <UserInput />
     </section>
-    <section v-if="false" id="weather-city-result">
+    <section v-if="true" id="weather-city-result">
       <WeatherCityResult
-        v-for="(t, index) in [1, 2, 3, 4, 5]"
-        :key="t"
-        :val="t"
-        :ind="index"
-        :leng="[1, 2, 3, 4, 5].length"
+        v-for="(cityGeo, index) in citiesGeo"
+        :key="index"
+        :cityGeo="cityGeo"
+        :index="index"
+        :length="citiesGeo.length"
       />
     </section>
     <section v-else id="weather-list-card">
