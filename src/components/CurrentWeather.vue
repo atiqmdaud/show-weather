@@ -1,6 +1,6 @@
 <template>
   <div class="top">
-    <div>buttn back</div>
+    <div @click="store.dispatch('updateSeeMain', true)">buttn back</div>
     <div>city name,city state,city country</div>
     <div v-if="false">add btn</div>
     <div v-else>delete btn</div>
@@ -14,7 +14,11 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useStore } from 'vuex'
+
+const store = useStore()
+</script>
 
 <style scoped>
 .top {

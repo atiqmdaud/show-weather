@@ -1,7 +1,6 @@
 <template>
   <div class="input-container">
     <i class="fas fa-search icon-left"></i>
-
     <input
       ref="autoFocusInput"
       type="text"

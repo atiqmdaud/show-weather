@@ -3,6 +3,7 @@ import { createStore } from 'vuex'
 import type { CitiesGeo } from '@/types/types'
 
 export interface State {
+  seeMain: boolean
   citiesGeo: CitiesGeo[]
   weather: any | null
   loading: boolean
@@ -10,14 +11,18 @@ export interface State {
 }
 
 export default createStore<State>({
-  state: { citiesGeo: [], weather: null, loading: false, error: null },
+  state: { seeMain: true, citiesGeo: [], weather: null, loading: false, error: null },
   getters: {
+    seeMain: (state) => state.seeMain,
     citiesGeo: (state) => state.citiesGeo,
     weather: (state) => state.weather,
     loading: (state) => state.loading,
     error: (state) => state.error,
   },
   mutations: {
+    setSeeMain(state, seeMain) {
+      state.seeMain = seeMain
+    },
     setCitiesGeo(state, citiesGeo) {
       state.citiesGeo = citiesGeo
     },
@@ -32,6 +37,9 @@ export default createStore<State>({
     },
   },
   actions: {
+    updateSeeMain({ commit }, seeMain) {
+      commit('setSeeMain', seeMain)
+    },
     fetchCitiesGeo({ commit }, citiesGeo: CitiesGeo) {
       commit('setCitiesGeo', citiesGeo)
     },

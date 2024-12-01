@@ -8,11 +8,7 @@ import { RouterLink, RouterView } from 'vue-router'
 <template>
   <header>
     <h2><RouterLink to="/">Show Weather</RouterLink></h2>
-    <navbar
-      ><li>
-        <RouterLink to="/profile">Profile</RouterLink>
-      </li>
-    </navbar>
+    <RouterLink to="/profile">Profile</RouterLink>
   </header>
 
   <main>

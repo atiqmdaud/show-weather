@@ -12,14 +12,16 @@ import { useStore } from 'vuex'
 
 const store = useStore()
 const citiesGeo = computed(() => store.getters.citiesGeo)
+const seeMain = computed(() => store.getters.seeMain)
+// console.log(seeMain)
 </script>
 
 <template>
-  <div v-if="true" id="main-sections">
+  <div v-if="seeMain" id="main-sections">
     <section id="user-input">
       <UserInput />
     </section>
-    <section v-if="true" id="weather-city-result">
+    <section v-if="citiesGeo.length > 0" id="weather-city-result">
       <WeatherCityResult
         v-for="(cityGeo, index) in citiesGeo"
         :key="index"
