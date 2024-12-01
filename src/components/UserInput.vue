@@ -12,6 +12,9 @@
     <i class="fas fa-times-circle icon-right" @click="clearCity"></i>
   </div>
   <div class="error-too-short" v-show="tooShort">Too Short</div>
+  <div class="no-result-found" v-show="noResultsFound">
+    No result found. Please try different city.
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -22,6 +25,7 @@ import { countryCodes } from '@/data/CountryCode'
 import { useStore } from 'vuex'
 
 const city = ref<string>('')
+const noResultsFound = ref<boolean>(false)
 const tooShort = ref(false)
 // const demoCitySuggestion = computed(() => store.getters.citiesGeo) //import computed
 const store = useStore()
@@ -56,6 +60,11 @@ const fetchCitiesGeo = debounce(async () => {
           lon: item.lon,
         }
       })
+      if (citiesGeo.length == 0) {
+        noResultsFound.value = true
+      } else {
+        noResultsFound.value = false
+      }
       store.dispatch('fetchCitiesGeo', citiesGeo)
     } catch (error: unknown) {
       console.error('Error fetching suggestions:', error)
@@ -114,7 +123,8 @@ const clearCity = () => {
   color: #333;
 }
 
-.error-too-short {
+.error-too-short,
+.no-result-found {
   color: red;
   font-size: small;
   margin-top: 3px;
