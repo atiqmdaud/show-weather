@@ -1,7 +1,8 @@
 <template>
   <div class="top">
     <div @click="store.dispatch('updateSeeMain', true)">buttn back</div>
-    <div>city name,city state,city country</div>
+    <div v-if="cityGeo.state">{{ `${cityGeo.name}, ${cityGeo.state}, ${cityGeo.country}` }}</div>
+    <div v-else>{{ `${cityGeo.name}, ${cityGeo.country}` }}</div>
     <div v-if="false">add btn</div>
     <div v-else>delete btn</div>
   </div>
@@ -15,9 +16,11 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useStore } from 'vuex'
 
 const store = useStore()
+const cityGeo = computed(() => store.getters.cityGeo)
 </script>
 
 <style scoped>

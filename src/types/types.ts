@@ -9,5 +9,4 @@ export interface CitiesGeo {
 export interface WeatherCityResultProps {
   cityGeo: CitiesGeo
   index: number
-  length: number
 }

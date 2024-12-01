@@ -27,7 +27,6 @@ const seeMain = computed(() => store.getters.seeMain)
         :key="index"
         :cityGeo="cityGeo"
         :index="index"
-        :length="citiesGeo.length"
       />
     </section>
     <section v-else id="weather-list-card">
