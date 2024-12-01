@@ -1,5 +1,6 @@
 <script setup lang="ts">
 //real development start
+//api use start
 import { RouterLink, RouterView } from 'vue-router'
 // import { RouterView } from 'vue-router'
 </script>
