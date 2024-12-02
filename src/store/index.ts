@@ -8,7 +8,7 @@ export interface State {
   cityGeo: CitiesGeo
   weather: null
   loading: boolean
-  error: string | null
+  error: string
 }
 
 export default createStore<State>({
@@ -18,7 +18,7 @@ export default createStore<State>({
     cityGeo: { name: '', state: '', country: '', lat: '', lon: '' },
     weather: null,
     loading: false,
-    error: null,
+    error: '',
   },
   getters: {
     seeMain: (state) => state.seeMain,
@@ -58,15 +58,17 @@ export default createStore<State>({
     async fetchWeather({ commit }, cityGeo) {
       commit('setCityGeo', cityGeo)
       commit('setLoading', true)
-      commit('setError', null)
+      commit('setError', '')
       try {
         const response = await axios.get(
           `https://api.openweathermap.org/data/3.0/onecall?lat=${cityGeo.lat}&lon=${cityGeo.lon}&exclude=minutely,alerts&units=metric&appid=${import.meta.env.VITE_OPENWEATHERMAP_API_KEY}`,
         )
-        console.log(response.data)
+        // console.log('my res is', response.data)
         commit('setWeather', response.data)
-      } catch (error: unknown) {
-        commit('setError', error)
+      } catch (error) {
+        console.log('error')
+        // console.log(error.request.statusText)
+        commit('setError', `${error}`)
       } finally {
         commit('setLoading', false)
       }
