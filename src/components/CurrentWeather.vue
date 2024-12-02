@@ -1,17 +1,17 @@
 <template>
   <div class="top white-color">
     <div @click="store.dispatch('updateSeeMain', true)">buttn back</div>
-    <div v-if="cityGeo.state">{{ `${cityGeo.name}, ${cityGeo.state}, ${cityGeo.country}` }}</div>
+    <div style="margin-bottom: 10px;" v-if="cityGeo.state">{{ `${cityGeo.name}, ${cityGeo.state}, ${cityGeo.country}` }}</div>
     <div v-else>{{ `${cityGeo.name}, ${cityGeo.country}` }}</div>
     <div v-if="false">add btn</div>
     <div v-else>delete btn</div>
   </div>
   <div class="bottom white-color">
-    <div>{{ date }}</div>
+    <div style="font-size: small;">{{ date }}</div>
     <img :src="icon" alt="icons" />
     <div class="temperature">{{ temperature }} °C</div>
     <div class="condition">{{ condition }}</div>
-    <div>Last update {{ updatedTime }}</div>
+    <div style="margin-top: 10px; font-size: small;">Last update {{ updatedTime }}</div>
   </div>
 </template>
 

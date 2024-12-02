@@ -2,7 +2,7 @@
   <div v-for="(hour, index) in hourly" :key="index" class="container">
     <img :src="`${iconBaseUrl}/${hour.weather[0].icon}.png`" alt="icon" />
     <div>{{ hour.temp.toFixed() }} °C</div>
-    <div style="font-size: 12px;">{{ getTime(hour.dt) }}</div>
+    <div style="font-size: 12px;opacity: 0.7;">{{ getTime(hour.dt) }}</div>
   </div>
 </template>
 
@@ -44,7 +44,7 @@ const getTime = (time: number) => {
   flex-direction: column;
   align-items: center;
   gap: 5px;
-  background-color: burlywood;
+  background-color: #F5F5F5;
   padding: 5px;
   border-radius: 5px;
 }

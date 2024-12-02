@@ -116,7 +116,7 @@ section#current-weather {
   flex-direction: column;
   /* overflow-x: auto; */
   /* gap: 5px; */
-  background-color: rgb(7, 123, 224);
+  background-color: #3764D7;
   /* padding-left: 13px;
   padding-right: 13px; */
   padding: 13px;
@@ -148,7 +148,7 @@ section#weekly-forecast {
   flex-direction: column;
   gap: 15px;
   overflow-y: auto;
-  max-height: 105px;
+  max-height: 100px;
 }
 
 .title-hourly,
