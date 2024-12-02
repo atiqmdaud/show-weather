@@ -2,19 +2,19 @@
   <div class="profile">
     <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> -->
     <div class="top">
-      <div>btn back</div>
+      <!-- <div>btn back</div> -->
       <div class="top-title">Edit Profile</div>
-      <div class="top-btn-forward">btn forward</div>
+      <!-- <div class="top-btn-forward">btn forward</div> -->
     </div>
     <div class="second">
       <!-- <img :src="photoUrl" alt="Profile Photo" v-if="photoUrl" /> -->
       <img src="https://placehold.co/10" alt="profile photo" width="60px" height="60px" />
       <div>
-        <input type="file" :disabled="disabled" />
+        <input type="file" v-show="!disabled" />
       </div>
       <!-- <input type="file" @change="handleFileUpload" /> -->
-      <div>{{ name }}</div>
-      <div>{{ email }} | {{ phone }}</div>
+      <div>{{ profileInfos.name }}</div>
+      <div>{{ profileInfos.email }} | {{ profileInfos.phone }}</div>
     </div>
     <div>
       <form @submit.prevent="">
@@ -44,10 +44,16 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
-const name = ref('demo')
-const email = ref('demo@demo.com')
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+
+const store = useStore()
+const profileInfos = computed(() => store.getters.profileInfos)
+
+const name = ref(profileInfos.value.name)
+const email = ref(profileInfos.value.email)
 const countryCode = ref('+60')
-const phone = ref('123456789')
+const phone = ref(profileInfos.value.phone)
 const disabled = ref(true)
 
 const handleClick = () => {
@@ -64,7 +70,7 @@ const handleDisabled = () => {
 }
 
 const handleSubmit = () => {
-  name.value = name.value
+  store.dispatch('updateProfileInfos', { name: name.value, email: email.value, phone: phone.value })
 
   disabled.value = true
 }
@@ -83,8 +89,9 @@ const handleSubmit = () => {
 
 .top {
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   /* border: 1px solid red; */
+  justify-content: center;
 }
 
 .top-title {

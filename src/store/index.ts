@@ -10,6 +10,7 @@ export interface State {
   loading: boolean
   error: string
   addedWeather: any
+  profileInfos: { name: string; email: string; phone: number }
 }
 
 export default createStore<State>({
@@ -21,6 +22,7 @@ export default createStore<State>({
     loading: false,
     error: '',
     addedWeather: [],
+    profileInfos: { name: 'demo', email: 'demo@test.com', phone: 1234567 },
   },
   getters: {
     seeMain: (state) => state.seeMain,
@@ -30,6 +32,7 @@ export default createStore<State>({
     loading: (state) => state.loading,
     error: (state) => state.error,
     addedWeather: (state) => state.addedWeather,
+    profileInfos: (state) => state.profileInfos,
   },
   mutations: {
     setSeeMain(state, seeMain) {
@@ -52,6 +55,9 @@ export default createStore<State>({
     },
     setAddedWeather(state, addedWeather) {
       state.addedWeather.push(addedWeather)
+    },
+    setProfileInfos(state, profileInfos) {
+      state.profileInfos = profileInfos
     },
   },
   actions: {
@@ -82,6 +88,9 @@ export default createStore<State>({
     fetchAddedWeather({ commit }, cityGeoWeather) {
       console.log(cityGeoWeather)
       commit('setAddedWeather', cityGeoWeather)
+    },
+    updateProfileInfos({ commit }, profileInfos) {
+      commit('setProfileInfos', profileInfos)
     },
   },
   modules: {},

@@ -1,5 +1,10 @@
 <template>
-  <div style="color: aliceblue;" v-for="(added, index) in addedWeather" :key="index" class="container">
+  <div
+    style="color: aliceblue"
+    v-for="(added, index) in addedWeather"
+    :key="index"
+    class="container"
+  >
     <div class="left">
       <div>{{ added.name }}</div>
       <div>{{ getTime(added.daily[0].dt) }}</div>
@@ -47,7 +52,7 @@ const getTime = (time: number) => {
   /* align-items: flex-start; */
   /* padding-left: 5px;
   padding-right: 5px; */
-  background-color: #3764D7;
+  background-color: #3764d7;
 }
 
 .left,
