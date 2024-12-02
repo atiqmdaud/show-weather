@@ -43,7 +43,7 @@ const seeMain = computed(() => store.getters.seeMain)
       <section id="hourly-forecast">
         <div class="title-hourly">Hourly Forecast</div>
         <div class="hourly-forecast">
-          <HourlyForecastCard v-for="h in ['a', 'b', 'c', 'd', 'e', 'f']" :key="h" />
+          <HourlyForecastCard />
         </div>
       </section>
       <section id="weekly-forecast">
