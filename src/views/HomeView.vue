@@ -34,32 +34,53 @@ const seeMain = computed(() => store.getters.seeMain)
     </section>
   </div>
   <div v-else id="detail-sections">
-    <section id="current-weather">
-      <CurrentWeather />
-    </section>
-    <section id="hourly-forecast">
-      <div class="title-hourly">Hourly Forecast</div>
-      <div class="hourly-forecast">
-        <HourlyForecastCard v-for="h in ['a', 'b', 'c', 'd', 'e', 'f']" :key="h" />
-      </div>
-    </section>
-    <section id="weekly-forecast">
-      <div class="title-weekly">Weekly Forecast</div>
-      <div class="weekly-forecast">
-        <WeeklyForecastCard v-for="w in ['a', 'b', 'c', 'd', 'e', 'f', 'g']" :key="w" />
-      </div>
-    </section>
+    <div class="detail-sections-top">
+      <section id="current-weather">
+        <CurrentWeather />
+      </section>
+    </div>
+    <div class="detail-sections-bottom">
+      <section id="hourly-forecast">
+        <div class="title-hourly">Hourly Forecast</div>
+        <div class="hourly-forecast">
+          <HourlyForecastCard v-for="h in ['a', 'b', 'c', 'd', 'e', 'f']" :key="h" />
+        </div>
+      </section>
+      <section id="weekly-forecast">
+        <div class="title-weekly">Weekly Forecast</div>
+        <div class="weekly-forecast">
+          <WeeklyForecastCard v-for="w in ['a', 'b', 'c', 'd', 'e', 'f', 'g']" :key="w" />
+        </div>
+      </section>
+    </div>
   </div>
 </template>
 
 <style lang="css" scoped>
-#main-sections,
+#main-sections {
+  display: flex;
+  flex-direction: column;
+  padding-left: 13px;
+  padding-right: 13px;
+  margin-bottom: 25px;
+}
 #detail-sections {
   display: flex;
   flex-direction: column;
   margin-bottom: 25px;
+}
+
+.detail-sections-bottom {
+  display: flex;
+  flex-direction: column;
   padding-left: 13px;
   padding-right: 13px;
+}
+
+.detail-sections-top {
+  display: flex;
+  flex-direction: column;
+  /* margin-bottom: 25px; */
 }
 
 #main-sections {
@@ -95,8 +116,10 @@ section#current-weather {
   flex-direction: column;
   /* overflow-x: auto; */
   /* gap: 5px; */
-  background-color: rgb(17, 122, 213);
-  
+  background-color: rgb(7, 123, 224);
+  /* padding-left: 13px;
+  padding-right: 13px; */
+  padding: 13px;
 }
 
 section#hourly-forecast {
@@ -125,7 +148,7 @@ section#weekly-forecast {
   flex-direction: column;
   gap: 15px;
   overflow-y: auto;
-  max-height: 200px;
+  max-height: 130px;
 }
 
 .title-hourly,

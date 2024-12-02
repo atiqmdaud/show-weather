@@ -1,16 +1,16 @@
 <template>
-  <div class="top">
+  <div class="top white-color">
     <div @click="store.dispatch('updateSeeMain', true)">buttn back</div>
     <div v-if="cityGeo.state">{{ `${cityGeo.name}, ${cityGeo.state}, ${cityGeo.country}` }}</div>
     <div v-else>{{ `${cityGeo.name}, ${cityGeo.country}` }}</div>
     <div v-if="false">add btn</div>
     <div v-else>delete btn</div>
   </div>
-  <div class="bottom">
+  <div class="bottom white-color">
     <div>{{ date }}</div>
     <img :src="icon" alt="icons" />
-    <div>{{ temperature }} °C</div>
-    <div>{{ condition }}</div>
+    <div class="temperature">{{ temperature }} °C</div>
+    <div class="condition">{{ condition }}</div>
     <div>Last update {{ updatedTime }}</div>
   </div>
 </template>
@@ -64,7 +64,7 @@ const iconBaseUrl = 'https://openweathermap.org/img/wn'
 const icon = computed(() => {
   if (weather.value) {
     const iconName = weather.value.current.weather[0].icon
-    return `${iconBaseUrl}/${iconName}@2x.png`
+    return `${iconBaseUrl}/${iconName}.png`
   } else {
     return ''
   }
@@ -109,5 +109,14 @@ const updatedTime = computed(() => {
   flex-direction: column;
   align-items: center;
   /* background-color: antiquewhite; */
+}
+
+.temperature,
+.condition {
+  font-size: x-large;
+}
+
+.white-color {
+  color: aliceblue;
 }
 </style>
