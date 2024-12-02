@@ -49,7 +49,7 @@ const seeMain = computed(() => store.getters.seeMain)
       <section id="weekly-forecast">
         <div class="title-weekly">Weekly Forecast</div>
         <div class="weekly-forecast">
-          <WeeklyForecastCard v-for="w in ['a', 'b', 'c', 'd', 'e', 'f', 'g']" :key="w" />
+          <WeeklyForecastCard />
         </div>
       </section>
     </div>
@@ -148,7 +148,7 @@ section#weekly-forecast {
   flex-direction: column;
   gap: 15px;
   overflow-y: auto;
-  max-height: 130px;
+  max-height: 105px;
 }
 
 .title-hourly,
