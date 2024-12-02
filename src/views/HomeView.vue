@@ -93,9 +93,10 @@ section#weather-list-card {
 section#current-weather {
   display: flex;
   flex-direction: column;
-  overflow-x: auto;
+  /* overflow-x: auto; */
   /* gap: 5px; */
-  background-color: aliceblue;
+  background-color: rgb(17, 122, 213);
+  
 }
 
 section#hourly-forecast {

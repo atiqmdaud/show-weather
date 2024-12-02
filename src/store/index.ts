@@ -63,7 +63,7 @@ export default createStore<State>({
         const response = await axios.get(
           `https://api.openweathermap.org/data/3.0/onecall?lat=${cityGeo.lat}&lon=${cityGeo.lon}&exclude=minutely,alerts&units=metric&appid=${import.meta.env.VITE_OPENWEATHERMAP_API_KEY}`,
         )
-        // console.log('my res is', response.data)
+        console.log('my res is', response.data)
         commit('setWeather', response.data)
       } catch (error) {
         console.log('error')
