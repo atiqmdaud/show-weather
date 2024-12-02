@@ -1,17 +1,19 @@
 <template>
   <div class="top white-color">
     <div @click="store.dispatch('updateSeeMain', true)">buttn back</div>
-    <div style="margin-bottom: 10px;" v-if="cityGeo.state">{{ `${cityGeo.name}, ${cityGeo.state}, ${cityGeo.country}` }}</div>
+    <div style="margin-bottom: 10px" v-if="cityGeo.state">
+      {{ `${cityGeo.name}, ${cityGeo.state}, ${cityGeo.country}` }}
+    </div>
     <div v-else>{{ `${cityGeo.name}, ${cityGeo.country}` }}</div>
-    <div v-if="false">add btn</div>
+    <div @click="addedWeather(weather)" v-if="true">add btn</div>
     <div v-else>delete btn</div>
   </div>
   <div class="bottom white-color">
-    <div style="font-size: small;">{{ date }}</div>
+    <div style="font-size: small">{{ date }}</div>
     <img :src="icon" alt="icons" />
     <div class="temperature">{{ temperature }} °C</div>
     <div class="condition">{{ condition }}</div>
-    <div style="margin-top: 10px; font-size: small;">Last update {{ updatedTime }}</div>
+    <div style="margin-top: 10px; font-size: small">Last update {{ updatedTime }}</div>
   </div>
 </template>
 
@@ -94,6 +96,10 @@ const updatedTime = computed(() => {
   }
 })
 // console.log('the weather', weather.value)
+
+const addedWeather = (addedWeather: any) => {
+  store.dispatch('fetchAddedWeather', addedWeather)
+}
 </script>
 
 <style scoped>

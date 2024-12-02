@@ -30,7 +30,7 @@ const seeMain = computed(() => store.getters.seeMain)
       />
     </section>
     <section v-else id="weather-list-card">
-      <WeatherAddedCard v-for="l in ['a', 'b', 'c']" :key="l" />
+      <WeatherAddedCard />
     </section>
   </div>
   <div v-else id="detail-sections">

@@ -9,6 +9,7 @@ export interface State {
   weather: null
   loading: boolean
   error: string
+  addedWeather: any
 }
 
 export default createStore<State>({
@@ -19,6 +20,7 @@ export default createStore<State>({
     weather: null,
     loading: false,
     error: '',
+    addedWeather: [],
   },
   getters: {
     seeMain: (state) => state.seeMain,
@@ -27,6 +29,7 @@ export default createStore<State>({
     weather: (state) => state.weather,
     loading: (state) => state.loading,
     error: (state) => state.error,
+    addedWeather: (state) => state.addedWeather,
   },
   mutations: {
     setSeeMain(state, seeMain) {
@@ -46,6 +49,9 @@ export default createStore<State>({
     },
     setError(state, error) {
       state.error = error
+    },
+    setAddedWeather(state, addedWeather) {
+      state.addedWeather.push(addedWeather)
     },
   },
   actions: {
@@ -72,6 +78,9 @@ export default createStore<State>({
       } finally {
         commit('setLoading', false)
       }
+    },
+    fetchAddedWeather({ commit }, addedWeather) {
+      commit('setAddedWeather', addedWeather)
     },
   },
   modules: {},

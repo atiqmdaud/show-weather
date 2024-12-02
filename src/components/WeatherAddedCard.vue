@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div v-for="(added, index) in addedWeather" :key="index" class="container">
     <div class="left">
       <div>1</div>
       <div>2</div>
@@ -15,7 +15,13 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+
+const store = useStore()
+const addedWeather = computed(() => store.getters.addedWeather)
+</script>
 
 <style scoped>
 .container {
