@@ -1,16 +1,18 @@
 <template>
-  <div v-for="(added, index) in addedWeather" :key="index" class="container">
+  <div style="color: aliceblue;" v-for="(added, index) in addedWeather" :key="index" class="container">
     <div class="left">
-      <div>1</div>
-      <div>2</div>
+      <div>{{ added.name }}</div>
+      <div>{{ getTime(added.daily[0].dt) }}</div>
       <br />
-      <div>33</div>
+      <div>{{ added.daily[0].summary }}</div>
     </div>
     <div class="right">
-      <div>345678</div>
-      <div>4</div>
-      <br />
-      <div>878</div>
+      <div>{{ added.daily[0].temp.day.toFixed() }} °C</div>
+      <div class="HiLo">
+        <div>H: {{ added.daily[0].temp.max.toFixed() }} °C</div>
+        <div style="visibility: hidden">aa</div>
+        <div>L :{{ added.daily[0].temp.min.toFixed() }} °C</div>
+      </div>
     </div>
   </div>
 </template>
@@ -21,6 +23,21 @@ import { useStore } from 'vuex'
 
 const store = useStore()
 const addedWeather = computed(() => store.getters.addedWeather)
+
+const getTime = (time: number) => {
+  const date = new Date(time * 1000)
+
+  let hours = date.getHours()
+  const minutes = date.getMinutes().toString().padStart(2, '0')
+
+  const ampm = hours >= 12 ? 'PM' : 'AM'
+
+  hours = hours % 12
+  hours = hours ? hours : 12 // The hour '0' should be '12'
+
+  const formattedTime = `${hours}:${minutes} ${ampm}`
+  return formattedTime
+}
 </script>
 
 <style scoped>
@@ -30,11 +47,23 @@ const addedWeather = computed(() => store.getters.addedWeather)
   /* align-items: flex-start; */
   /* padding-left: 5px;
   padding-right: 5px; */
-  background-color: beige;
+  background-color: #3764D7;
 }
 
 .left,
 .right {
-  padding: 0 10px 0 10px;
+  /* padding: 0 10px 0 10px; */
+  padding: 10px;
+}
+
+.HiLo {
+  display: flex;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: end;
 }
 </style>

@@ -79,8 +79,9 @@ export default createStore<State>({
         commit('setLoading', false)
       }
     },
-    fetchAddedWeather({ commit }, addedWeather) {
-      commit('setAddedWeather', addedWeather)
+    fetchAddedWeather({ commit }, cityGeoWeather) {
+      console.log(cityGeoWeather)
+      commit('setAddedWeather', cityGeoWeather)
     },
   },
   modules: {},

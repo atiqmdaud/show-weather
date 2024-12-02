@@ -5,7 +5,7 @@
       {{ `${cityGeo.name}, ${cityGeo.state}, ${cityGeo.country}` }}
     </div>
     <div v-else>{{ `${cityGeo.name}, ${cityGeo.country}` }}</div>
-    <div @click="addedWeather(weather)" v-if="true">add btn</div>
+    <div @click="addedWeather(cityGeoWeather)" v-if="true">add btn</div>
     <div v-else>delete btn</div>
   </div>
   <div class="bottom white-color">
@@ -24,6 +24,7 @@ import { useStore } from 'vuex'
 const store = useStore()
 const cityGeo = computed(() => store.getters.cityGeo)
 const weather = computed(() => store.getters.weather)
+const cityGeoWeather = computed(() => ({ ...weather.value, ...cityGeo.value }))
 // const loading = computed(() => store.getters.loading)
 
 const getDate = () => {
