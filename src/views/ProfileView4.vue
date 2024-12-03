@@ -46,7 +46,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { computed } from 'vue'
 
 const profileInfo = computed(() => {
@@ -74,6 +74,16 @@ const email = ref(profileInfo.value.email)
 const phone = ref(profileInfo.value.phone)
 // const countryCode = ref('+60')
 const disabled = ref(true)
+// const signalRem = ref(false)
+const signal = ref(false)
+const lsName = ref(localStorage.getItem('weatherDemo_31224_name') ? true : false)
+console.log('lsname.value is', lsName.value)
+
+watch(lsName, () => {
+  console.log('watch')
+  signal.value = !signal.value
+  console.log('signal',signal.value)
+})
 
 const handleClick = () => {
   if (disabled.value) {
@@ -84,6 +94,7 @@ const handleClick = () => {
 }
 
 const handleDisabled = () => {
+  console.log('clicked btn disabled')
   disabled.value = false
 }
 
@@ -91,6 +102,8 @@ const handleSubmit = () => {
   localStorage.setItem('weatherDemo_31224_name', `${name.value}`)
   localStorage.setItem('weatherDemo_31224_email', `${email.value}`)
   localStorage.setItem('weatherDemo_31224_phone', `${phone.value}`)
+  lsName.value = localStorage.getItem('weatherDemo_31224_name') ? true : false
+  console.log('submit', lsName.value)
 
   disabled.value = true
 }
@@ -99,6 +112,8 @@ const clearLocalStorage = () => {
   localStorage.removeItem('weatherDemo_31224_name')
   localStorage.removeItem('weatherDemo_31224_email')
   localStorage.removeItem('weatherDemo_31224_phone')
+  lsName.value = localStorage.getItem('weatherDemo_31224_name') ? true : false
+  console.log('clear', lsName.value)
 }
 </script>
 
