@@ -20,15 +20,47 @@
       <div class="third">
         <div>
           <!-- <label for="name">Full name:</label> -->
-          <input v-model="name" type="text" id="name" required :disabled="disabled" />
+          <input
+            @input="inputName"
+            v-model="name"
+            type="text"
+            id="name"
+            required
+            :disabled="disabled"
+          />
+          <div style="color: red; font-size: smaller" v-show="nameEmpty">Name cannot be empty!</div>
         </div>
         <div>
           <!-- <label for="email">Email:</label> -->
-          <input v-model="email" type="email" id="email" required :disabled="disabled" />
+          <input
+            @input="inputEmail"
+            v-model="email"
+            type="email"
+            id="email"
+            required
+            :disabled="disabled"
+            @blur="validateEmail"
+          />
+          <div style="color: red; font-size: smaller" v-show="emailEmpty">
+            Email cannot be empty!
+          </div>
+          <div style="color: red; font-size: smaller" v-show="emailNotValid">
+            Email is not valid!
+          </div>
         </div>
         <div>
           <!-- <label for="phone">Phone Number:</label> -->
-          <input v-model="phone" type="tel" id="phone" required :disabled="disabled" />
+          <input
+            @input="inputPhone"
+            v-model="phone"
+            type="tel"
+            id="phone"
+            required
+            :disabled="disabled"
+          />
+          <div style="color: red; font-size: smaller" v-show="phoneEmpty">
+            Phone cannot be empty!
+          </div>
         </div>
       </div>
     </div>
@@ -36,7 +68,11 @@
       Clear LocalStorage
     </div>
     <div class="bottom">
-      <button @click="handleClick" type="submit">
+      <button
+        :disabled="hasError || hasErrorValid || nameEmpty || emailEmpty || phoneEmpty"
+        @click="handleClick"
+        type="submit"
+      >
         {{ disabled ? 'EDIT' : 'SUBMIT' }}
       </button>
     </div>
@@ -46,6 +82,57 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { computed } from 'vue'
+
+let hasError = false
+let hasErrorValid = false
+
+const nameEmpty = ref(false)
+
+const inputName = () => {
+  if (name.value == '') {
+    nameEmpty.value = true
+    hasError = true
+  } else {
+    nameEmpty.value = false
+    hasError = false
+  }
+}
+
+const emailEmpty = ref(false)
+const emailNotValid = ref(false)
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+const validateEmail = () => {
+  if (emailPattern.test(`${email.value}`)) {
+    emailNotValid.value = false
+    hasErrorValid = false
+  } else {
+    emailNotValid.value = true
+    hasErrorValid = true
+  }
+}
+
+const inputEmail = () => {
+  if (email.value == '') {
+    emailEmpty.value = true
+    hasError = true
+  } else {
+    emailEmpty.value = false
+    hasError = false
+  }
+}
+
+const phoneEmpty = ref(false)
+
+const inputPhone = () => {
+  if (phone.value == '') {
+    phoneEmpty.value = true
+    hasError = true
+  } else {
+    phoneEmpty.value = false
+    hasError = false
+  }
+}
 
 const imageUrl = ref('https://placehold.co/100')
 const handleImageUpload = (event: any) => {
@@ -198,12 +285,17 @@ button {
   border-radius: 5px;
   font-size: 14px;
   border: none;
+  cursor: pointer;
 }
 
 button:active {
   outline: none;
   box-shadow: none;
   transform: none;
+}
+
+button:disabled {
+  background-color: brown;
 }
 @media (min-width: 1024px) {
 }
