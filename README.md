@@ -1,11 +1,11 @@
-# ShowWeather 🌦️
+# Weather 🌦️
 
-**ShowWeather** is a user-friendly weather application built with Vite, Vue 3, TypeScript, and the OpenWeatherMap API. It provides real-time weather updates and forecasts for cities around the world, featuring intuitive and quick access to weather information.
+**Weather** is a user-friendly weather application built with Vite, Vue 3, TypeScript, and the OpenWeatherMap API. It provides real-time weather updates and forecasts for cities around the world, featuring intuitive and quick access to weather information.
 
 ## Features
 
 - 🌍 **Global Weather Data**: Get weather updates for any city around the world.
-- 🔄 **Real-Time Updates**: See current weather conditions, including temperature, humidity, wind speed, and more.
+- 🔄 **Real-Time Updates**: See current, hourly and weekly-daily forecast weather conditions, including temperature.
 - 🔍 **City Suggestions**: Receive city suggestions as you type, making it easy to find your location.
 - ⏲️ **Quick Access**: Instantly check the weather with an intuitive and responsive interface.
 - ❌ **Clear Search**: Easily clear your search input with a built-in clear button.
@@ -15,7 +15,7 @@
 1. **Clone the Repository**:
 
    ```bash
-   git clone https://github.com/yourusername/showweather.git
+   git clone https://github.com/atiqmdaud/show-weather
 
    ```
 
@@ -47,6 +47,7 @@
    ```
 
 ## Approach and Architectural Decisions
+
 - Tech Stack: The project uses Vite for its build tool, Vue 3 for the frontend framework, and TypeScript for type safety. This combination ensures fast development and efficient performance.
 
 - State Management: Vuex is used for state management to handle the global state of the application efficiently.
@@ -58,4 +59,5 @@
 - Styling: Basic styling is applied using CSS to ensure a clean and responsive design.
 
 ## Demo url
+
 [Visit Weather App](https://openweathermap.org)
