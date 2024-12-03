@@ -13,8 +13,8 @@
         <input type="file" v-show="!disabled" />
       </div>
       <!-- <input type="file" @change="handleFileUpload" /> -->
-      <div>{{ profileInfo.name }}</div>
-      <div>{{ profileInfo.email }} | {{ profileInfo.phone }}</div>
+      <div>{{ profileInfos.name }}</div>
+      <div>{{ profileInfos.email }} | {{ profileInfos.phone }}</div>
     </div>
     <div>
       <form @submit.prevent="">
@@ -45,34 +45,15 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { computed } from 'vue'
+import { useStore } from 'vuex'
 
-const profileInfo = computed(() => {
-  return {
-    name: ref(
-      localStorage.getItem('weatherDemo_31224_name')
-        ? localStorage.getItem('weatherDemo_31224_name')
-        : 'demo',
-    ),
-    email: ref(
-      localStorage.getItem('weatherDemo_31224_email')
-        ? localStorage.getItem('weatherDemo_31224_email')
-        : 'demo@demo.com',
-    ),
-    phone: ref(
-      localStorage.getItem('weatherDemo_31224_phone')
-        ? localStorage.getItem('weatherDemo_31224_phone')
-        : JSON.stringify(1164833973),
-    ),
-  }
-})
+const store = useStore()
+const profileInfos = computed(() => store.getters.profileInfos)
 
-const name = ref(profileInfo.value.name)
-
-const email = ref(profileInfo.value.email)
-
-const phone = ref(profileInfo.value.phone)
-
+const name = ref(profileInfos.value.name)
+const email = ref(profileInfos.value.email)
 // const countryCode = ref('+60')
+const phone = ref(profileInfos.value.phone)
 const disabled = ref(true)
 
 const handleClick = () => {
@@ -89,9 +70,7 @@ const handleDisabled = () => {
 }
 
 const handleSubmit = () => {
-  localStorage.setItem('weatherDemo_31224_name', `${name.value}`)
-  localStorage.setItem('weatherDemo_31224_email', `${email.value}`)
-  localStorage.setItem('weatherDemo_31224_phone', `${phone.value}`)
+  store.dispatch('updateProfileInfos', { name: name.value, email: email.value, phone: phone.value })
 
   disabled.value = true
 }

@@ -48,21 +48,9 @@ import { computed } from 'vue'
 
 const profileInfo = computed(() => {
   return {
-    name: ref(
-      localStorage.getItem('weatherDemo_31224_name')
-        ? localStorage.getItem('weatherDemo_31224_name')
-        : 'demo',
-    ),
-    email: ref(
-      localStorage.getItem('weatherDemo_31224_email')
-        ? localStorage.getItem('weatherDemo_31224_email')
-        : 'demo@demo.com',
-    ),
-    phone: ref(
-      localStorage.getItem('weatherDemo_31224_phone')
-        ? localStorage.getItem('weatherDemo_31224_phone')
-        : JSON.stringify(1164833973),
-    ),
+    name: ref(localStorage.getItem('name') ? localStorage.getItem('name') : 'demo'),
+    email: localStorage.getItem('email') ? localStorage.getItem('email') : 'demo@demo.com',
+    phone: localStorage.getItem('phone') ? localStorage.getItem('phone') : '12345',
   }
 })
 
@@ -89,9 +77,7 @@ const handleDisabled = () => {
 }
 
 const handleSubmit = () => {
-  localStorage.setItem('weatherDemo_31224_name', `${name.value}`)
-  localStorage.setItem('weatherDemo_31224_email', `${email.value}`)
-  localStorage.setItem('weatherDemo_31224_phone', `${phone.value}`)
+  localStorage.setItem('name', `${name.value}`)
 
   disabled.value = true
 }
