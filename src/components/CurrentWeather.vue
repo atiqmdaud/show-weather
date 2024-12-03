@@ -17,7 +17,9 @@
     <img :src="icon" alt="icons" />
     <div class="temperature">{{ temperature }} °C</div>
     <div class="condition">{{ condition }}</div>
-    <div style="margin-top: 10px; font-size: small">Last update {{ updatedTime }}</div>
+    <div style="margin-top: 10px; font-size: small">
+      Last update {{ updatedTime }} <i class="fa fa-refresh" aria-hidden="true"></i>
+    </div>
   </div>
 </template>
 
