@@ -46,7 +46,7 @@
    npm run dev
    ```
 
-- Approach and Architectural Decisions
+## Approach and Architectural Decisions
 - Tech Stack: The project uses Vite for its build tool, Vue 3 for the frontend framework, and TypeScript for type safety. This combination ensures fast development and efficient performance.
 
 - State Management: Vuex is used for state management to handle the global state of the application efficiently.
