@@ -8,7 +8,7 @@
     </div>
     <div class="second">
       <!-- <img :src="photoUrl" alt="Profile Photo" v-if="photoUrl" /> -->
-      <img :src="imageUrl" alt="profile photo" width="100px" height="100px" />
+      <img :src="`${imageUrl}`" alt="profile photo" width="100px" height="100px" />
       <div>
         <input type="file" v-show="!disabled" @change="handleImageUpload" />
       </div>
@@ -47,9 +47,10 @@
 import { ref } from 'vue'
 import { computed } from 'vue'
 
-const imageUrl = ref('https://placehold.co/100')
+// const imageUrl = ref('https://placehold.co/100')
 const handleImageUpload = (event: any) => {
   const file = event.target.files[0]
+  console.log(file)
   if (file) {
     imageUrl.value = URL.createObjectURL(file)
   }
@@ -72,12 +73,19 @@ const profileInfo = computed(() => {
         ? localStorage.getItem('weatherDemo_31224_phone')
         : JSON.stringify(123456789),
     ),
+    imageUrl: ref(
+      localStorage.getItem('weatherDemo_31224_imageUrl')
+        ? localStorage.getItem('weatherDemo_31224_imageUrl')
+        : 'https://placehold.co/100',
+    ),
   }
 })
 
 const name = ref(profileInfo.value.name)
 const email = ref(profileInfo.value.email)
 const phone = ref(profileInfo.value.phone)
+const imageUrl = ref(profileInfo.value.imageUrl)
+console.log(imageUrl.value)
 // const countryCode = ref('+60')
 const disabled = ref(true)
 
@@ -97,6 +105,7 @@ const handleSubmit = () => {
   localStorage.setItem('weatherDemo_31224_name', `${name.value}`)
   localStorage.setItem('weatherDemo_31224_email', `${email.value}`)
   localStorage.setItem('weatherDemo_31224_phone', `${phone.value}`)
+  localStorage.setItem('weatherDemo_31224_imageUrl', `${imageUrl.value}`)
 
   disabled.value = true
 }
@@ -105,6 +114,7 @@ const clearLocalStorage = () => {
   localStorage.removeItem('weatherDemo_31224_name')
   localStorage.removeItem('weatherDemo_31224_email')
   localStorage.removeItem('weatherDemo_31224_phone')
+  localStorage.removeItem('weatherDemo_31224_imageUrl')
 }
 </script>
 
