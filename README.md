@@ -22,7 +22,7 @@
 2. **Navigate to the Project Directory:**:
 
    ```bash
-   cd showweather
+   cd show-weather
 
    ```
 
