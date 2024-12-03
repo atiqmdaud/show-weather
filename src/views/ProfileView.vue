@@ -210,8 +210,9 @@ const clearLocalStorage = () => {
   flex-direction: column;
   /* align-items: center; */
   justify-content: space-between;
-  margin: 15px;
-  gap: 15px;
+  margin-left: 15px;
+  margin-right: 15px;
+  gap: 10px;
 }
 
 .top {
@@ -269,7 +270,7 @@ const clearLocalStorage = () => {
   width: 100%;
   /* position: relative; */
   /* bottom: 0px; */
-  margin-top: 0px;
+  margin-top: 10px;
 }
 
 input {

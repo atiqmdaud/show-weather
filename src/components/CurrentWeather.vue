@@ -104,6 +104,7 @@ const updatedTime = computed(() => {
 
 const addedWeather = (addedWeather: any) => {
   store.dispatch('fetchAddedWeather', addedWeather)
+  store.dispatch('updateSeeMain', true)
 }
 </script>
 
