@@ -7,8 +7,10 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <header>
-    <h2><RouterLink to="/">Show Weather</RouterLink></h2>
-    <RouterLink to="/profile">Profile</RouterLink>
+    <h2><RouterLink style="color: black" to="/">Weather</RouterLink></h2>
+    <RouterLink style="color: black" to="/profile"
+      ><i class="far fa-user" aria-hidden="true"></i
+    ></RouterLink>
   </header>
 
   <main>

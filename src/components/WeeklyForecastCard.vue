@@ -4,14 +4,14 @@
       <img :src="`${iconBaseUrl}/${day.weather[0].icon}.png`" alt="icon" />
       <div class="day">
         <div>{{ getDay(day.dt) }}</div>
-        <div style="opacity: 0.7;">{{ day.weather[0].description }}</div>
+        <div style="opacity: 0.7">{{ day.weather[0].description }}</div>
       </div>
     </div>
     <div class="right">
       <div>
         <div>{{ day.temp.day.toFixed() }} °C</div>
       </div>
-      <div>></div>
+      <div><i class="fa fa-caret-right" aria-hidden="true"></i></div>
     </div>
   </div>
 </template>
@@ -45,7 +45,7 @@ const getDay = (time: number) => {
   display: flex;
   align-items: center;
   gap: 5px;
-  background-color: #9AB6FF;
+  background-color: #9ab6ff;
   padding: 5px;
   justify-content: space-between;
   border-radius: 5px;

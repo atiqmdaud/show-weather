@@ -9,7 +9,7 @@
       @input="fetchCitiesGeo"
       @keyup.enter="fetchCitiesGeo"
     />
-    <i class="fas fa-times-circle icon-right" @click="clearCity"></i>
+    <i class="far fa-times-circle icon-right" @click="clearCity"></i>
   </div>
   <div class="error-too-short" v-show="tooShort">Too Short</div>
   <div class="no-result-found" v-show="noResultsFound">

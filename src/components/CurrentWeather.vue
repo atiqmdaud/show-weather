@@ -1,11 +1,15 @@
 <template>
   <div class="top white-color">
-    <div @click="store.dispatch('updateSeeMain', true)">buttn back</div>
+    <div style="cursor: pointer" @click="store.dispatch('updateSeeMain', true)">
+      <i class="fa fa-angle-left" aria-hidden="true"></i>
+    </div>
     <div style="margin-bottom: 10px" v-if="cityGeo.state">
       {{ `${cityGeo.name}, ${cityGeo.state}, ${cityGeo.country}` }}
     </div>
     <div v-else>{{ `${cityGeo.name}, ${cityGeo.country}` }}</div>
-    <div @click="addedWeather(cityGeoWeather)" v-if="true">add btn</div>
+    <div style="cursor: pointer" @click="addedWeather(cityGeoWeather)" v-if="true">
+      <i class="fa fa-plus" aria-hidden="true"></i>
+    </div>
     <div v-else>delete btn</div>
   </div>
   <div class="bottom white-color">

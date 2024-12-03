@@ -8,7 +8,13 @@
     </div>
     <div class="second">
       <!-- <img :src="photoUrl" alt="Profile Photo" v-if="photoUrl" /> -->
-      <img :src="imageUrl" alt="profile photo" width="100px" height="100px" />
+      <img
+        style="object-fit: cover; border-radius: 50%"
+        :src="imageUrl"
+        alt="profile photo"
+        width="100px"
+        height="100px"
+      />
       <div>
         <input type="file" v-show="!disabled" @change="handleImageUpload" />
       </div>
