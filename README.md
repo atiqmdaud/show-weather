@@ -56,3 +56,6 @@
 - Components: The app follows a component-based architecture, breaking down the UI into reusable components, which improves maintainability and scalability.
 
 - Styling: Basic styling is applied using CSS to ensure a clean and responsive design.
+
+## Demo url
+[Visit Weather App](https://openweathermap.org)
