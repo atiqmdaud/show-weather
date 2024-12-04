@@ -21,7 +21,7 @@
 import { ref } from 'vue'
 import axios from 'axios'
 import type { CitiesGeo } from '@/types/types'
-import { countryCodes } from '@/data/CountryCode'
+import { countryCodes } from '../data/countryCode'
 import { useStore } from 'vuex'
 
 const city = ref<string>('')
@@ -32,7 +32,7 @@ const store = useStore()
 const autoFocusInput = ref<HTMLInputElement>()
 
 const debounce = (func: Function, delay: number) => {
-  let timeout: number
+  let timeout: ReturnType<typeof setTimeout>
   return (...args: any) => {
     clearTimeout(timeout)
     timeout = setTimeout(() => func.apply(this, args), delay)
