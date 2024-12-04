@@ -5,7 +5,7 @@ import UserInput from '../UserInput.vue'
 
 describe('User Input', () => {
   it('renders properly', () => {
-    const wrapper = mount(UserInput)
-    expect(wrapper.text()).toContain('Enter City')
+    const input = mount(UserInput).find('input')
+    expect(input.attributes('placeholder')).toBe('Search for a city or airport')
   })
 })

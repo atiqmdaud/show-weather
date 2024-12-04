@@ -4,7 +4,7 @@
     <input
       ref="autoFocusInput"
       type="text"
-      placeholder="Enter city"
+      placeholder="Search for a city or airport"
       v-model="city"
       @input="fetchCitiesGeo"
       @keyup.enter="fetchCitiesGeo"
