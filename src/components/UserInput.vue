@@ -44,7 +44,7 @@ const fetchCitiesGeo = debounce(async () => {
     tooShort.value = false
     try {
       const response = await axios.get(
-        `http://api.openweathermap.org/geo/1.0/direct?q=${city.value}&limit=5&appid=${import.meta.env.VITE_OPENWEATHERMAP_API_KEY}`,
+        `https://api.openweathermap.org/geo/1.0/direct?q=${city.value}&limit=5&appid=${import.meta.env.VITE_OPENWEATHERMAP_API_KEY}`,
       )
       // console.log('the response is:', response.data)
 
