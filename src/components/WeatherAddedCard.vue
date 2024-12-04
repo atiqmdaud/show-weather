@@ -38,7 +38,7 @@ const getTime = (time: number) => {
   const ampm = hours >= 12 ? 'PM' : 'AM'
 
   hours = hours % 12
-  hours = hours ? hours : 12 // The hour '0' should be '12'
+  hours = hours ? hours : 12
 
   const formattedTime = `${hours}:${minutes} ${ampm}`
   return formattedTime
@@ -49,15 +49,11 @@ const getTime = (time: number) => {
 .container {
   display: flex;
   justify-content: space-between;
-  /* align-items: flex-start; */
-  /* padding-left: 5px;
-  padding-right: 5px; */
   background-color: #3764d7;
 }
 
 .left,
 .right {
-  /* padding: 0 10px 0 10px; */
   padding: 10px;
 }
 

@@ -1,8 +1,5 @@
 <script setup lang="ts">
-//real development start
-//api use start
 import { RouterLink, RouterView } from 'vue-router'
-// import { RouterView } from 'vue-router'
 </script>
 
 <template>
@@ -17,7 +14,7 @@ import { RouterLink, RouterView } from 'vue-router'
     <RouterView />
   </main>
   <div class="footer-container">
-    <footer>&copy; 2024 Your Company. All rights reserved.</footer>
+    <footer>&copy; 2024 Show Weather Sdn Bhd. All rights reserved.</footer>
   </div>
 </template>
 
@@ -30,7 +27,6 @@ header {
   padding-left: 13px;
   padding-right: 13px;
   padding-top: -1px;
-  /* border: 1px solid red; */
 }
 
 li {
@@ -40,9 +36,6 @@ a {
   text-decoration: none;
 }
 
-main {
-}
-
 .footer-container {
   display: flex;
   justify-content: center;
@@ -50,18 +43,7 @@ main {
 
 footer {
   position: absolute;
-  /* width: 100%; */
   bottom: 0;
-  /* border: 1px solid blue; */
-  /* background-color: rgb(180, 180, 177); */
   text-align: center;
-}
-
-/* header {
-  line-height: 1.5;
-  max-height: 100vh;
-} */
-
-@media (min-width: 1024px) {
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="input-container">
-    <i class="fas fa-search icon-left"></i>
+    <i class="fa fa-search icon-left"></i>
     <input
       ref="autoFocusInput"
       type="text"
@@ -27,7 +27,6 @@ import { useStore } from 'vuex'
 const city = ref<string>('')
 const noResultsFound = ref<boolean>(false)
 const tooShort = ref(false)
-// const demoCitySuggestion = computed(() => store.getters.citiesGeo) //import computed
 const store = useStore()
 
 const autoFocusInput = ref<HTMLInputElement>()
@@ -44,8 +43,6 @@ const fetchCitiesGeo = debounce(async () => {
   if (city.value.trim().length > 2) {
     tooShort.value = false
     try {
-      // console.log('req..')
-      // console.log(city.value)
       const response = await axios.get(
         `http://api.openweathermap.org/geo/1.0/direct?q=${city.value}&limit=5&appid=${import.meta.env.VITE_OPENWEATHERMAP_API_KEY}`,
       )
@@ -74,9 +71,7 @@ const fetchCitiesGeo = debounce(async () => {
     store.dispatch('fetchCitiesGeo', [])
   } else {
     tooShort.value = true
-    // store.dispatch('fetchCitiesGeo', [])
   }
-  // console.log(demoCitySuggestion.value)
 }, 300)
 
 const clearCity = () => {
@@ -87,22 +82,15 @@ const clearCity = () => {
 </script>
 
 <style scoped>
-/* input {
-  width: 100%;
-  box-sizing: border-box;
-} */
-
 .input-container {
   position: relative;
-  /* width: 300px; */
 }
 .input-container input {
   width: 100%;
   box-sizing: border-box;
-  padding: 10px 40px 10px 35px; /* Padding for icons */
+  padding: 10px 40px 10px 35px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
   outline: none;
 }
 .input-container .icon-left,

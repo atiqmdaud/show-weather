@@ -1,13 +1,9 @@
 <template>
   <div class="profile">
-    <!-- <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" /> -->
     <div class="top">
-      <!-- <div>btn back</div> -->
       <div class="top-title">Edit Profile</div>
-      <!-- <div class="top-btn-forward">btn forward</div> -->
     </div>
     <div class="second">
-      <!-- <img :src="photoUrl" alt="Profile Photo" v-if="photoUrl" /> -->
       <img
         style="object-fit: cover; border-radius: 50%"
         :src="imageUrl"
@@ -18,14 +14,13 @@
       <div>
         <input type="file" v-show="!disabled" @change="handleImageUpload" />
       </div>
-      <!-- <input type="file" @change="handleFileUpload" /> -->
       <div>{{ profileInfo.name }}</div>
       <div>{{ profileInfo.email }} | {{ profileInfo.phone }}</div>
     </div>
     <div>
       <div class="third">
         <div>
-          <!-- <label for="name">Full name:</label> -->
+          <!-- <label for="name"Name:</label> -->
           <input
             @input="inputName"
             v-model="name"
@@ -203,12 +198,9 @@ const clearLocalStorage = () => {
 
 <style>
 .profile {
-  /* max-height: 100vh; */
-  /* border: 1px solid red; */
   height: 100%;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   justify-content: space-between;
   margin-left: 15px;
   margin-right: 15px;
@@ -217,8 +209,6 @@ const clearLocalStorage = () => {
 
 .top {
   display: flex;
-  /* justify-content: space-around; */
-  /* border: 1px solid red; */
   justify-content: center;
 }
 
@@ -231,14 +221,12 @@ const clearLocalStorage = () => {
 }
 
 .second {
-  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
-  /* text-align: center; */
 }
 
 .second img {
@@ -246,30 +234,17 @@ const clearLocalStorage = () => {
   height: auto;
 }
 
-/* styles.css */
-/* body {
-    font-family: Arial, sans-serif;
-} */
-
 .third {
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 10px;
-  /* justify-content: space-around; */
-  /* align-items: center; */
-  /* border: 1px solid red; */
-  /* padding: 20px; */
-}
-.third input {
 }
 
 .bottom {
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  /* position: relative; */
-  /* bottom: 0px; */
   margin-top: 10px;
 }
 
@@ -303,7 +278,5 @@ button:active {
 
 button:disabled {
   background-color: brown;
-}
-@media (min-width: 1024px) {
 }
 </style>

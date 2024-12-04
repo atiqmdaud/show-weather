@@ -31,7 +31,6 @@ const store = useStore()
 const cityGeo = computed(() => store.getters.cityGeo)
 const weather = computed(() => store.getters.weather)
 const cityGeoWeather = computed(() => ({ ...weather.value, ...cityGeo.value }))
-// const loading = computed(() => store.getters.loading)
 
 const getDate = () => {
   const date = new Date(weather.value.current.dt * 1000)
@@ -53,7 +52,7 @@ const getTime = () => {
   const ampm = hours >= 12 ? 'PM' : 'AM'
 
   hours = hours % 12
-  hours = hours ? hours : 12 // The hour '0' should be '12'
+  hours = hours ? hours : 12
 
   const formattedTime = `${hours}:${minutes} ${ampm}`
   return formattedTime
@@ -102,7 +101,6 @@ const updatedTime = computed(() => {
     return 'updated time error!'
   }
 })
-// console.log('the weather', weather.value)
 
 const addedWeather = (addedWeather: any) => {
   store.dispatch('fetchAddedWeather', addedWeather)
@@ -115,14 +113,12 @@ const addedWeather = (addedWeather: any) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* background-color: aliceblue; */
 }
 
 .bottom {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background-color: antiquewhite; */
 }
 
 .temperature,

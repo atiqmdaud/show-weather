@@ -86,7 +86,6 @@ export default createStore<State>({
       }
     },
     fetchAddedWeather({ commit }, cityGeoWeather) {
-      // console.log(cityGeoWeather)
       commit('setAddedWeather', cityGeoWeather)
     },
     updateProfileInfos({ commit }, profileInfos) {

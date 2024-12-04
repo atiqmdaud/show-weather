@@ -1,5 +1,5 @@
 <template>
-  <div @click="clickCity(props.cityGeo)">
+  <div style="cursor: pointer" @click="clickCity(props.cityGeo)">
     <div v-if="props.cityGeo.state">
       {{ props.cityGeo.name }},
       <span class="state">{{ props.cityGeo.state ? props.cityGeo.state : '' }}</span
@@ -27,10 +27,6 @@ const clickCity = (cityGeo: CitiesGeo) => {
 </script>
 
 <style scoped>
-div {
-  /* background-color: aquamarine; */
-}
-
 hr {
   border: 0;
   clear: both;
@@ -41,12 +37,10 @@ hr {
 }
 
 .state {
-  /* font-size: small; */
   opacity: 0.7;
 }
 
 .country {
-  /* font-size: smaller; */
   opacity: 0.7;
 }
 </style>

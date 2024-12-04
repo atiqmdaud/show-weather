@@ -8,12 +8,9 @@ import WeeklyForecastCard from '@/components/WeeklyForecastCard.vue'
 import { computed } from 'vue'
 import { useStore } from 'vuex'
 
-// import store from '@/store'
-
 const store = useStore()
 const citiesGeo = computed(() => store.getters.citiesGeo)
 const seeMain = computed(() => store.getters.seeMain)
-// console.log(seeMain)
 </script>
 
 <template>
@@ -80,28 +77,18 @@ const seeMain = computed(() => store.getters.seeMain)
 .detail-sections-top {
   display: flex;
   flex-direction: column;
-  /* margin-bottom: 25px; */
 }
 
 #main-sections {
   gap: 25px;
 }
 
-section {
-  /* padding-left: 13px; */
-  /* padding-right: 13px; */
-}
-
 section#weather-city-result {
   max-height: 270px;
-  /* overflow-y: scroll; */
   overflow: auto;
-  /* background-color: antiquewhite; */
-  /* height: 370px; */
   display: flex;
   flex-direction: column;
   gap: 5px;
-  /* border: 1px solid #ccc; */
 }
 section#weather-list-card {
   max-height: 370px;
@@ -114,11 +101,7 @@ section#weather-list-card {
 section#current-weather {
   display: flex;
   flex-direction: column;
-  /* overflow-x: auto; */
-  /* gap: 5px; */
   background-color: #3764d7;
-  /* padding-left: 13px;
-  padding-right: 13px; */
   padding: 13px;
 }
 
@@ -126,7 +109,6 @@ section#hourly-forecast {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  /* border: 1px solid red; */
 }
 
 .hourly-forecast {
@@ -140,7 +122,6 @@ section#weekly-forecast {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  /* border: 1px solid red; */
 }
 
 .weekly-forecast {
